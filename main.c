@@ -1,30 +1,33 @@
+/* Filename: Main.c
+Description: Takes a time in seconds and turns it into a digital time (hrs mins and secs)
+Author: Edgar Tulodziecki
+Date: 28/02/2023
+Version: 1 */
+#include <stdio.h> 
+#include <stdlib.h>
+#include <math.h>
 
-void foo1(int xval)
+void impedence_phase(double res, double cap, double ind, double freq, double *impedence, double *phase_angle)
 {
-int x;
-
-x = xval;
-/* print the address of x here – “The address of x is ..” */
+  double Xl = freq * ind; //inductive reactance
+  double Xc = 1.0 / (freq * cap);//capacitive reactance
+  double Z = sqrt(res * res + (Xl - Xc) * (Xl - Xc)); //impedence
+  double phi = acos(res / Z); //phase angle
+  *impedence = Z;
+  *phase_angle = phi;
+  
 }
-
-void foo2(int yval)
-{
-int y;
-
-y = yval;
-/* print the address of y here – “The address of y is..” */
-}
-
-/*
-void foo3(void)
-{
-int z; foo1(z);
-}
-*/
 
 int main(void)
 {
-foo1(7);
-foo2(11);
-/* foo3(); */ system("PAUSE"); return 0;
+  double res = 100.0;
+  double cap = 1e-6;
+  double ind = 10e-3;
+  double freq = 1000.0;
+  double impedance, phase_angle;
+  
+void impedence_phase(res,  cap,  ind,  freq, &impedence,  &phase_angle);
+  printf("Impedance = %f Ohms, Phase angle = %f degrees\n", impedance, phase_angle * 180 / M_PI);
+  
+return 0;
 }

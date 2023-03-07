@@ -1,0 +1,31 @@
+/* Filename: Main.c
+Description: Takes a time in seconds and turns it into a digital time (hrs mins and secs)
+Author: Edgar Tulodziecki
+Date: 28/02/2023
+Version: 1 */
+#include <stdio.h> 
+#include <stdlib.h>
+#include <math.h>
+
+void split_time(long total_sec, int *hr, int *min, int *sec)
+{
+  //find hours by dividing by 3600
+  *hr = total_sec/3600;
+  total_sec = total_sec%3600;
+  //find minutes by dividing by 60
+  *min = total_sec/60;
+  //find seconds by getting the remainder
+  *sec = total_sec%60;
+}
+
+int main(void)
+{
+  //create random value to input for testing
+  long total_sec = 12345;
+  int hr, min, sec;
+  
+split_time(total_sec,&hr,&min,&sec);
+printf("total seconds: %ld into time %d: %d: %d",total_sec,hr,min,sec);
+  
+return 0;
+}
